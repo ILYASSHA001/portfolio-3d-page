@@ -11,7 +11,7 @@ export default function AudioPlayer() {
     /*===============================================*/
     const blob = useRef(null)
 
-    const audioSpeaker = useGLTF('./audio-speaker-draco.glb')
+    const audioSpeaker = useGLTF(`${import.meta.env.BASE_URL}audio-speaker-draco.glb`)
     const mySound = "./morning-garden-acoustic-chill-15013.mp3"
     const [play, setPlay] = useState(false)
     const [isVisible, setIsVisible] = useState(false)

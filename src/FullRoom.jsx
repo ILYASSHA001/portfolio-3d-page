@@ -8,7 +8,7 @@ import * as THREE from 'three'
 export default function FullRoom()
 {
 
-  const room = useGLTF('./portfolioblend.glb')
+  const room = useGLTF(`${import.meta.env.BASE_URL}./portfolioblend.glb`)
   const iMac = room.nodes['Apple_iMac']
 
   console.log(room)
