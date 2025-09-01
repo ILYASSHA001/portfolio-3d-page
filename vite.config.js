@@ -5,7 +5,7 @@ import restart from 'vite-plugin-restart'
 export default {
     root: 'src/',
     publicDir: '../public/',
-    base: '/portfolio2/', 
+    base: '/portfolio-3d-page/', 
     plugins:
     [
         // Restart server on static/public file change
