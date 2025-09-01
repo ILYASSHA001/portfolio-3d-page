@@ -3,12 +3,13 @@ import { useLayoutEffect, useMemo, useState, useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { HatchMaterial } from "./HatchMaterial"
 import { Suspense } from 'react'
-
+import speakerUrl from './audio-speaker-draco.glb?url'
 import * as THREE from 'three'
 export default function FullRoom()
-{
 
-  const room = useGLTF(`${import.meta.env.BASE_URL}./portfolioblend.glb`)
+
+{[]
+  const room = useGLTF(speakerUrl)
   const iMac = room.nodes['Apple_iMac']
 
   console.log(room)
