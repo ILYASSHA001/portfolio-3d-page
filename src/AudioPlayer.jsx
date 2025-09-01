@@ -14,7 +14,7 @@ export default function AudioPlayer() {
     const blob = useRef(null)
 
     const audioSpeaker = useGLTF(musicUrl)
-    const mySound = "./morning-garden-acoustic-chill-15013.mp3"
+    const mySound = "./morning-garden-acoustic-chill-15013.mp3?url"
     const [play, setPlay] = useState(false)
     const [isVisible, setIsVisible] = useState(false)
 
