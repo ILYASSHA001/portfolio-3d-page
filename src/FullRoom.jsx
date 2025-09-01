@@ -77,6 +77,14 @@ const iframeUrl = useMemo(
     }
   }, [])
 
+  const onTapiMac = () => {
+    if (window.matchMedia('(pointer: coarse)').matches) {
+      setTargetFov(20)
+      setIsVisible(true)
+    }
+  }
+
+
   const onHoveriMac = () => {
     document.body.style.cursor = 'pointer'
     setTargetFov(20)
@@ -134,6 +142,7 @@ const iframeUrl = useMemo(
           className="iframe-radius"  
           onPointerEnter={ onHoveriMac } 
           onPointerLeave={ onPointerLeaveHandler }
+          onClick={onTapiMac} 
         />
       </Html>
       <Suspense fallback={<Loader />}>
