@@ -60,6 +60,23 @@ const iframeUrl = useMemo(
     return () => {window.removeEventListener('keydown', onKeyDown)}
   }, [])
 
+  useEffect(() => {
+    if (window.matchMedia('(pointer: coarse)').matches) {
+      let lastTap = 0
+      const onTouch = () => {
+        const now = Date.now()
+        if (now - lastTap < 400) {
+          // double tap detected
+          setTargetFov(35)
+          setIsVisible(false)
+        }
+        lastTap = now
+      }
+      window.addEventListener('touchend', onTouch)
+      return () => window.removeEventListener('touchend', onTouch)
+    }
+  }, [])
+
   const onHoveriMac = () => {
     document.body.style.cursor = 'pointer'
     setTargetFov(20)
@@ -81,7 +98,25 @@ const iframeUrl = useMemo(
 
   return (
     <>
-
+      {isVisible && window.matchMedia('(pointer: coarse)').matches && (
+        <Html position={[1, 1.5, 1]}>
+          <button
+            style={{
+              padding: '8px 12px',
+              borderRadius: '8px',
+              border: 'none',
+              background: '#111',
+              color: '#fff'
+            }}
+            onClick={() => {
+              setTargetFov(35)
+              setIsVisible(false)
+            }}
+          >
+            Exit Zoom
+          </button>
+        </Html>
+      )}
       {/* Attach iframe ONLY to the Apple_iMac node */}
       <Html
         transform

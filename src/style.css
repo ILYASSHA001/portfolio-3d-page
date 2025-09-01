@@ -127,3 +127,12 @@ canvas, .r3f {
     }
   }
   
+
+
+  /* mobile/tablet only */
+@media (pointer: coarse) {
+  canvas.r3f {
+    touch-action: none;          /* stops pan/zoom gestures hijacking the page */
+    overscroll-behavior: none;   /* reduces pull-to-refresh / edge-swipe */
+  }
+}
