@@ -7,14 +7,14 @@
 import { useEffect, useRef, useState } from "react"
 import { Html, useGLTF } from "@react-three/drei"
 import musicUrl from './audio-speaker-draco.glb?url'
-
+import music2Url from './morning-garden-acoustic-chill-15013.mp3?url'
 
 export default function AudioPlayer() {
     /*===============================================*/
     const blob = useRef(null)
 
     const audioSpeaker = useGLTF(musicUrl)
-    const mySound = "./morning-garden-acoustic-chill-15013.mp3?url"
+    const mySound = music2Url
     const [play, setPlay] = useState(false)
     const [isVisible, setIsVisible] = useState(false)
 
