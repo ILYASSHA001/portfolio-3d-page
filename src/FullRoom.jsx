@@ -1,4 +1,4 @@
-import { Html, useAnimations, useGLTF, useProgress } from "@react-three/drei"
+import { Html, useGLTF, useProgress } from "@react-three/drei"
 import { useLayoutEffect, useMemo, useState, useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { HatchMaterial } from "./HatchMaterial"
@@ -98,9 +98,10 @@ const iframeUrl = useMemo(
 
   return (
     <>
+    
       {/* MOBILE-ONLY TOGGLER (doesn't overlap iframe) */}
-{isCoarse && (
-  <Html position={[1.1, 1.55, 0.8]} /* tweak position to where you like */
+      {isCoarse && (
+        <Html position={[-0.6, 2.4, -2.6]} /* tweak position to where you like */
         transform
         distanceFactor={1.3}>
     <button
@@ -115,10 +116,9 @@ const iframeUrl = useMemo(
         boxShadow: '0 6px 16px rgba(0,0,0,0.25)'
       }}
     >
-      {isVisible ? 'Exit Zoom' : 'Zoom In'}
-    </button>
-  </Html>
-)}
+      <span className="DescriptorText">{isVisible ? 'Exit Zoom' : 'Zoom In'}</span></button>
+e     </Html>
+      )}
 
       {/* Attach iframe ONLY to the Apple_iMac node */}
       <Html
@@ -160,7 +160,7 @@ const iframeUrl = useMemo(
         </primitive>
       </Suspense>
 
-      {isVisible ?  <Html position={ [1, 1.5 , 1] } ><span className="DescriptorText">Press "E" to exit zoom</span></Html> : null}
+      {isVisible && !isCoarse ?  <Html position={ [1, 1.5 , 1] } ><span className="DescriptorText">Press "E" to exit zoom</span></Html> : null}
      
     </>
   )

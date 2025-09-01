@@ -32,15 +32,3 @@ export default function Experience()
 
     </>
 }
-
-/*
-
-Here are some improvement ideas:
-
-1. Introduction animation where objects come up when ready and loaded;
-2. Sounds (don’t forget that the user needs to interact with the page through a click or a keyboard press before being able to play sounds);
-3. Easter eggs;
-5. Improve the actual content of the iframe;
-6. Make it mobile friendly.
-
-*/
