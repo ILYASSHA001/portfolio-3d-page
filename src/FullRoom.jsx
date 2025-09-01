@@ -46,6 +46,7 @@ const iframeUrl = useMemo(
   const { camera } = useThree()
   const [targetFov, setTargetFov] = useState(35)
   const [isVisible, setIsVisible] = useState(false)
+  const [isCoarse, setIsCoarse] = useState(false)
 
   useFrame((_, delta) => {
     camera.fov += (targetFov - camera.fov) * delta * 5
@@ -61,35 +62,26 @@ const iframeUrl = useMemo(
   }, [])
 
   useEffect(() => {
-    if (window.matchMedia('(pointer: coarse)').matches) {
-      let lastTap = 0
-      const onTouch = () => {
-        const now = Date.now()
-        if (now - lastTap < 400) {
-          // double tap detected
-          setTargetFov(35)
-          setIsVisible(false)
-        }
-        lastTap = now
-      }
-      window.addEventListener('touchend', onTouch)
-      return () => window.removeEventListener('touchend', onTouch)
-    }
+    setIsCoarse(window.matchMedia('(pointer: coarse)').matches)
+
   }, [])
 
-  const onTapiMac = () => {
-    if (window.matchMedia('(pointer: coarse)').matches) {
+  
+  // reuseable toggler
+  const toggleZoom = () => {
+    setIsVisible((v) => {
+      const next = !v
+      setTargetFov(next ? 20 : 35)
+      return next
+    })
+  }
+
+  const onHoveriMac = () => {
+    if (!isCoarse) {
+      document.body.style.cursor = 'pointer'
       setTargetFov(20)
       setIsVisible(true)
     }
-  }
-
-
-  const onHoveriMac = () => {
-    document.body.style.cursor = 'pointer'
-    setTargetFov(20)
-    setIsVisible(true)
-    
   }
 
   const onPointerLeaveHandler = () => {
@@ -106,25 +98,28 @@ const iframeUrl = useMemo(
 
   return (
     <>
-      {isVisible && window.matchMedia('(pointer: coarse)').matches && (
-        <Html position={[1, 1.5, 1]}>
-          <button
-            style={{
-              padding: '8px 12px',
-              borderRadius: '8px',
-              border: 'none',
-              background: '#111',
-              color: '#fff'
-            }}
-            onClick={() => {
-              setTargetFov(35)
-              setIsVisible(false)
-            }}
-          >
-            Exit Zoom
-          </button>
-        </Html>
-      )}
+      {/* MOBILE-ONLY TOGGLER (doesn't overlap iframe) */}
+{isCoarse && (
+  <Html position={[1.1, 1.55, 0.8]} /* tweak position to where you like */
+        transform
+        distanceFactor={1.3}>
+    <button
+      onClick={toggleZoom}
+      style={{
+        padding: '10px 14px',
+        borderRadius: 10,
+        border: 'none',
+        background: '#111',
+        color: '#fff',
+        fontSize: 14,
+        boxShadow: '0 6px 16px rgba(0,0,0,0.25)'
+      }}
+    >
+      {isVisible ? 'Exit Zoom' : 'Zoom In'}
+    </button>
+  </Html>
+)}
+
       {/* Attach iframe ONLY to the Apple_iMac node */}
       <Html
         transform
@@ -142,7 +137,6 @@ const iframeUrl = useMemo(
           className="iframe-radius"  
           onPointerEnter={ onHoveriMac } 
           onPointerLeave={ onPointerLeaveHandler }
-          onClick={onTapiMac} 
         />
       </Html>
       <Suspense fallback={<Loader />}>
