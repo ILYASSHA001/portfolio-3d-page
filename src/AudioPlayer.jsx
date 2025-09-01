@@ -6,7 +6,7 @@
 */
 import { useEffect, useRef, useState } from "react"
 import { Html, useGLTF } from "@react-three/drei"
-import musicUrl from './morning-garden-acoustic-chill-15013.mp3?url'
+import musicUrl from './audio-speaker-draco.glb?url'
 
 
 export default function AudioPlayer() {
