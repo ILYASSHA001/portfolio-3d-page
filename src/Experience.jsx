@@ -4,9 +4,9 @@ import BackGround from './BackGround'
 import AudioPlayer from './AudioPlayer'
 import MidGround from './MidGround'
 import { Perf } from 'r3f-perf'
-import { useState } from 'react'
+import Placeholder from './Placeholder.jsx'
+import { Suspense, useState } from 'react'
 import { Html} from "@react-three/drei"
-
 export default function Experience()
 {
 
@@ -25,28 +25,31 @@ export default function Experience()
         <Environment 
             preset={preset}
         />
-        <Html transform distanceFactor={1.8} position={[-4, 2, -3]}>
-            <button
-                onClick={togglePreset}
-                style={{
-                    padding: '10px 14px',
-                    borderRadius: 10,
-                    border: 'none',
-                    background: 'transparent',
-                    color: '#fff',
-                    fontSize: '14px',
-                    width: '100px',
-                    height: '60px !important',
-                    cursor: 'pointer'
-                }}
-            >
-                <span className='DescriptorText'>Toggle Env ({preset})</span>
-            </button>
-        </Html>
-        <BackGround />
-        <MidGround />
-        <FullRoom  />
-
+        <Suspense fallback={<Html><span className='DescriptorText' scale={ [2, 3, 2] } >Loadinf...</span></Html> } >
+            <Html transform distanceFactor={1.8} position={[-4, 2, -3]}>
+                <button
+                    onClick={togglePreset}
+                    style={{
+                        padding: '10px 14px',
+                        borderRadius: 10,
+                        border: 'none',
+                        background: 'transparent',
+                        color: '#fff',
+                        fontSize: '14px',
+                        width: '100px',
+                        height: '60px !important',
+                        cursor: 'pointer'
+                    }}
+                >
+                    <span className='DescriptorText'>Toggle Env ({preset})</span>
+                </button>
+            </Html>
+            <BackGround />
+            <MidGround />
+        </Suspense>
+        <Suspense fallback={<Placeholder  position-y={[0.5]} scale={ [2, 3, 2] } /> } >
+            <FullRoom  />
+        </Suspense>
         {/*<OrbitControls makeDefault/>*/}
       
         <PerspectiveCamera makeDefault position={[0, 1, 6]} fov={40}  />

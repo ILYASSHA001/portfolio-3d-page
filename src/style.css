@@ -63,6 +63,7 @@ canvas, .r3f {
 
 .DescriptorText:hover {
   color: #111111;
+  cursor: help;
   background:
     radial-gradient(900px 700px at 15% 10%, #b3e5ff50, transparent 60%),
     radial-gradient(900px 700px at 85% 20%, #ffd1e650, transparent 60%),
