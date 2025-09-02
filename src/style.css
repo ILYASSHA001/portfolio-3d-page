@@ -1,3 +1,14 @@
+:root{
+  --bg1:#F6FBFF; --bg2:#FAF7FF;
+  --text:#1b2430; --muted:#5e6a7a;
+  --card:#ffffffaa;              /* glass */
+  --stroke:#0000000f;            /* thin border */
+  --blur:18px;
+  --r:18px;
+  --grad1:#60d6cf; --grad2:#a97bff; --grad3:#ffa3b3;
+  --chip:#f2f6ff;
+  --shadow: 0 10px 30px rgba(24,39,75,.06), 0 2px 8px rgba(24,39,75,.06);
+}
 html,
 body,
 #root
@@ -38,15 +49,31 @@ canvas, .r3f {
 .DescriptorText {
     padding: 1rem;
     border: 6px #ffffff solid;
-    color: #ffffff;
+    color: #C9C9C9;
     border-radius: 1rem;
-    background-color: transparent;
+    background-color: white;
     font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     min-width: 160px;
+    text-align: center;
+    transition: .3s ease-in-out;
 }
+
+.DescriptorText:hover {
+  color: #111111;
+  background:
+    radial-gradient(900px 700px at 15% 10%, #b3e5ff50, transparent 60%),
+    radial-gradient(900px 700px at 85% 20%, #ffd1e650, transparent 60%),
+    radial-gradient(900px 700px at 20% 90%, #c6ffd650, transparent 60%),
+    linear-gradient(180deg, var(--bg1), var(--bg2));
+
+    /*background: linear-gradient(90deg, var(--grad1), var(--grad2), var(--grad3));*/
+    /*-webkit-background-clip: text; background-clip:text; color: transparent;*/
+
+}
+
 
 .floating-text {
     width: 100%;

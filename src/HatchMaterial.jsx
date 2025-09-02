@@ -77,7 +77,7 @@ const frag = `
     ink += smoothstep(0.2, 0.4, tone) * h1;
     ink += smoothstep(0.4, 0.6, tone) * h2;
     ink += smoothstep(0.6, 0.8, tone) * h3;
-    ink += smoothstep(0.8, 1.0, tone) * h4;
+    ink += smoothstep(0.2, 1.0, tone) * h4;
 
     vec3 col = mix(paperColor, inkColor, clamp(ink, 0.0, 1.0));
     gl_FragColor = vec4(col, 1.0);
@@ -87,10 +87,10 @@ const frag = `
 export const HatchMaterial = shaderMaterial(
   // uniforms (defaults)
   {
-    inkColor:   new THREE.Color(0x111111),
+    inkColor:   new THREE.Color(0xC9C9C9),
     paperColor: new THREE.Color(0xf6f3e8),
-    scale:      20.0,   // increase for denser lines (if useWorld=1 this is per world-unit)
-    thickness:  0.12,   // 0..0.5
+    scale:      30.0,   // increase for denser lines (if useWorld=1 this is per world-unit)
+    thickness:  0.1,   // 0..0.5
     ambient:    0.12,   // ambient floor
     lightDir:   new THREE.Vector3(0.5, 0.8, 0.3).normalize(),
     lightDir2:   new THREE.Vector3(-1, 0, 0).normalize(),
