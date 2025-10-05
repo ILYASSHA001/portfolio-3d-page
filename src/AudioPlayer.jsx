@@ -22,7 +22,7 @@ export default function AudioPlayer() {
         //like css cursor: default
         document.body.style.cursor = 'pointer'
     }
-    
+
     const onPointerLeaveHandler = () => {
         //like css cursor: default
         document.body.style.cursor = 'move'
@@ -39,41 +39,41 @@ export default function AudioPlayer() {
         audio.volume = 0.3;   // 30% volume
 
     }
-  
-    return(
-        <>  
-            <primitive
-                object={audioSpeaker.scene} 
+
+    return (
+        <>
+            <group
                 onClick={AudioToggler}
-                onPointerEnter={ onPointerEnterHandler }
-                onPointerLeave={ onPointerLeaveHandler }
-                scale={ 4 }
+                onPointerEnter={onPointerEnterHandler}
+                onPointerLeave={onPointerLeaveHandler}
+                scale={4}
                 position={[3.2, -0.8, -2]}
-                rotation-y={- Math.PI /4}
+                rotation-y={-Math.PI / 4}
             >
-                {!isVisible ? <Html position={ [0.1, 0.4 , 0.1] } ><span className="DescriptorText">Click the Radio!</span></Html> : null}
-                {isVisible ?
-                <Html 
-                    position={[-0.4, 0.5, -0.1]}
-                >
-                    <div className="muzieknootjes">
-                        <div className="noot-1">
-                        &#9835; &#9833;
+                {/* your GLB model */}
+                <primitive object={audioSpeaker.scene} />
+
+                {/* your Html overlays */}
+                {!isVisible ? (
+                    <Html position={[0.1, 0.4, 0.1]}>
+                        <span className="DescriptorText">Click the Radio!</span>
+                    </Html>
+                ) : (
+                    <Html position={[-0.4, 0.5, -0.1]}>
+                        <div className="muzieknootjes">
+                            <div className="noot-1">&#9835; &#9833;</div>
+                            <div className="noot-2">&#9833;</div>
+                            <div className="noot-3">&#9839; &#9834;</div>
+                            <div className="noot-4">&#9834;</div>
                         </div>
-                        <div className="noot-2">
-                        &#9833;
-                        </div>
-                        <div className="noot-3">
-                        &#9839; &#9834;
-                        </div>
-                        <div className="noot-4">
-                        &#9834;
-                        </div>
-                    </div>
+                    </Html>
+                )}
+
+                <Html>
+                    <audio id="audio_tag" src={mySound} loop />
                 </Html>
-                : null }
-                <Html><audio id="audio_tag" src={mySound} loop /></Html>
-            </primitive>
+            </group>
+
         </>
     )
- }
+}
