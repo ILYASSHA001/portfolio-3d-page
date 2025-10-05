@@ -133,7 +133,23 @@ export default function FullRoom({ onOpen }) {
           </button>
           e 
         </Html>
-        <Html position={[1, 0.8, 1]} ><a href="open_modal" onClick={toggleModal} className="DescriptorText">Click here to view website in full screen</a></Html>
+        <Html position={[0.2, 2.4, -2.6]} 
+          transform
+          distanceFactor={1.3}>
+          
+          <button 
+            onClick={toggleModal} 
+            style={{
+              padding: '10px 14px',
+              borderRadius: 10,
+              border: 'none',
+              background: '#111',
+              color: '#fff',
+              fontSize: 14,
+              boxShadow: '0 6px 16px rgba(0,0,0,0.25)'
+            }}><span className="DescriptorText">{isVisible ? 'Exit' : 'FullScreen'}</span>
+          </button>
+            </Html>
 
         </>
           
