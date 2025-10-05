@@ -4,39 +4,47 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { HatchMaterial } from "./HatchMaterial"
 import { Suspense } from 'react'
 import * as THREE from 'three'
-export default function FullRoom()
-{
-  const room = useGLTF(import.meta.env.BASE_URL + '/portfolioblend.glb')
+import { useNeedleProgressive } from "@needle-tools/gltf-progressive";
+
+export default function FullRoom({ onOpen }) {
+
+  //need.tool to fast load scene
+  const { gl } = useThree()
+  const url = '/portfolioblend.glb'
+  const room = useGLTF(import.meta.env.BASE_URL + url, false, false, (loader) => {
+    useNeedleProgressive(loader, gl)
+  })
+
   const iMac = room.nodes['Apple_iMac']
 
   console.log(room)
-/*load using timestamp */
+  /*load using timestamp */
 
-const iframeUrl = useMemo(
-  () => `https://ilyassha001.github.io/portfolio-inside-page/?t=${Date.now()}`,[])
+  const iframeUrl = useMemo(
+    () => `https://ilyassha001.github.io/portfolio-inside-page/?t=${Date.now()}`, [])
   /*Shader Material */
 
   // Create ONE shared material instance
   const hatch = useMemo(
     () => new HatchMaterial({
-    scale: 25,
-    thickness: 0.15,
-    inkColor: new THREE.Color('#111'),
-    paperColor: new THREE.Color('#f7f4e9'),
-    ambient: 0.15,
-    useWorld: 1,
+      scale: 25,
+      thickness: 0.15,
+      inkColor: new THREE.Color('#111'),
+      paperColor: new THREE.Color('#f7f4e9'),
+      ambient: 0.15,
+      useWorld: 1,
     }),
     []
   )
 
   // Replace materials on all meshes in the loaded scene
   useLayoutEffect(() => {
-      room.scene.traverse((o) => {
+    room.scene.traverse((o) => {
       if (o.isMesh) {
-          o.material = hatch
-          o.material.needsUpdate = true
+        o.material = hatch
+        o.material.needsUpdate = true
       }
-      })
+    })
   }, [room.scene, hatch])
 
 
@@ -54,11 +62,11 @@ const iframeUrl = useMemo(
   })
 
   useEffect(() => {
-    const onKeyDown = (e) => { 
+    const onKeyDown = (e) => {
       if (e.code === 'KeyE') setTargetFov(35), setIsVisible(false)
     }
     window.addEventListener('keydown', onKeyDown)
-    return () => {window.removeEventListener('keydown', onKeyDown)}
+    return () => { window.removeEventListener('keydown', onKeyDown) }
   }, [])
 
   useEffect(() => {
@@ -66,7 +74,7 @@ const iframeUrl = useMemo(
 
   }, [])
 
-  
+
   // reuseable toggler
   const toggleZoom = () => {
     setIsVisible((v) => {
@@ -86,7 +94,7 @@ const iframeUrl = useMemo(
 
   const onPointerLeaveHandler = () => {
     //like css cursor: default
-   document.body.style.cursor = 'move'
+    document.body.style.cursor = 'move'
   }
 
 
@@ -95,29 +103,40 @@ const iframeUrl = useMemo(
     return <Html center>{progress.toFixed(0)} % loaded</Html>
   }
 
+  const toggleModal = (e) => {
+    e?.preventDefault?.()
+    window.dispatchEvent(new CustomEvent('openModal'))
+  }
 
   return (
     <>
-    
+
       {/* MOBILE-ONLY TOGGLER (doesn't overlap iframe) */}
-      {isCoarse && (
+      {isCoarse && (<>
         <Html position={[-0.6, 2.4, -2.6]} /* tweak position to where you like */
-        transform
-        distanceFactor={1.3}>
-    <button
-      onClick={toggleZoom}
-      style={{
-        padding: '10px 14px',
-        borderRadius: 10,
-        border: 'none',
-        background: '#111',
-        color: '#fff',
-        fontSize: 14,
-        boxShadow: '0 6px 16px rgba(0,0,0,0.25)'
-      }}
-    >
-      <span className="DescriptorText">{isVisible ? 'Exit Zoom' : 'Zoom In'}</span></button>
-e     </Html>
+          transform
+          distanceFactor={1.3}>
+          <button
+              onClick={toggleZoom}
+              style={{
+              padding: '10px 14px',
+              borderRadius: 10,
+              border: 'none',
+              background: '#111',
+              color: '#fff',
+              fontSize: 14,
+              boxShadow: '0 6px 16px rgba(0,0,0,0.25)'
+            }}
+          >
+            <span className="DescriptorText">
+              {isVisible ? 'Exit Zoom' : 'Zoom In'}</span>
+          </button>
+          e 
+        </Html>
+        <Html position={[1, 0.8, 1]} ><a href="open_modal" onClick={toggleModal} className="DescriptorText">Click here to view website in full screen</a></Html>
+
+        </>
+          
       )}
 
       {/* Attach iframe ONLY to the Apple_iMac node */}
@@ -126,28 +145,28 @@ e     </Html>
         wrapperClass="htmlScreen"
         distanceFactor={1.3}
         position={[-0.604, 1.07, -2.64]}
-        rotation-y={ 0}
+        rotation-y={0}
         // 👇 attach to iMac
-   
+
         center
         parent={iMac} // <- alternative approach if you want it directly bound
       >
-        <iframe 
-          src={iframeUrl} 
-          className="iframe-radius"  
-          onPointerEnter={ onHoveriMac } 
-          onPointerLeave={ onPointerLeaveHandler }
+        <iframe
+          src={iframeUrl}
+          className="iframe-radius"
+          onPointerEnter={onHoveriMac}
+          onPointerLeave={onPointerLeaveHandler}
         />
       </Html>
       <Suspense fallback={<Loader />}>
-        <primitive 
-          object={ room.scene } 
-          rotation-y={1.6} 
-          scale={4} 
-          position-y={-5.5} 
+        <primitive
+          object={room.scene}
+          rotation-y={1.6}
+          scale={4}
+          position-y={-5.5}
         >
           <hatchMaterial
-          
+
             scale={28}              // denser lines
             thickness={0.10}
             inkColor="#1a1a1a"
@@ -160,8 +179,9 @@ e     </Html>
         </primitive>
       </Suspense>
 
-      {isVisible && !isCoarse ?  <Html position={ [1, 1.5 , 1] } ><span className="DescriptorText">Press "E" to exit zoom</span></Html> : null}
-     
+      {isVisible && !isCoarse ? <Html position={[1, 1.5, 1]} ><span className="DescriptorText">Press "E" to exit zoom</span></Html> : null}
+      {isVisible && !isCoarse ? <Html position={[1, 0.8, 1]} ><a href="open_modal" onClick={toggleModal} className="DescriptorText">Click here to view website in full screen</a></Html> : null}
+
     </>
   )
 }

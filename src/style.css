@@ -164,3 +164,41 @@ canvas, .r3f {
     overscroll-behavior: none;   /* reduces pull-to-refresh / edge-swipe */
   }
 }
+
+
+
+
+.test {
+  background: salmon;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  opacity: 1;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  font-family:sans-serif;
+  color: #ffffff;
+} 
+
+
+.modal-dialog.modal-lg {
+  min-width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+.modal-content {
+  height: 100vh;
+}
+
+.modal-dialog.modal-lg iframe {
+  min-height: 100%;
+}
+

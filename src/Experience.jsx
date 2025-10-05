@@ -1,14 +1,16 @@
-import { PerspectiveCamera, OrbitControls, Environment } from '@react-three/drei'
+import { PerspectiveCamera, OrbitControls, Environment, useProgress } from '@react-three/drei'
 import FullRoom from './FullRoom'
 import BackGround from './BackGround'
 import AudioPlayer from './AudioPlayer'
 import MidGround from './MidGround'
 import { Perf } from 'r3f-perf'
 import Placeholder from './Placeholder.jsx'
-import { Suspense, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Html} from "@react-three/drei"
-export default function Experience()
+import LoaderPlaceholder from './LoaderPlaceholder.jsx'
+export default function Experience({ onOpen })
 {
+
 
     const [preset, setPreset] = useState("sunset")
     const togglePreset = () => {
@@ -18,14 +20,17 @@ export default function Experience()
       }
 
 
+
+
     return <>
        {/* <Perf position="top-left" />*/}
+
         <AudioPlayer />
         
         <Environment 
             preset={preset}
         />
-        <Suspense fallback={<Html><span className='DescriptorText' scale={ [2, 3, 2] } >Loadinf...</span></Html> } >
+        <Suspense fallback={<Placeholder  position-y={[0.5]} scale={ [2, 3, 2] } />} >
             <Html transform distanceFactor={1.8} position={[-4, 2, -3]}>
                 <button
                     onClick={togglePreset}
@@ -47,9 +52,13 @@ export default function Experience()
             <BackGround />
             <MidGround />
         </Suspense>
-        <Suspense fallback={<Placeholder  position-y={[0.5]} scale={ [2, 3, 2] } /> } >
-            <FullRoom  />
+
+
+        <Suspense fallback={<Placeholder  position-y={[0.5]} scale={ [2, 3, 2] } />} >
+            <FullRoom  onOpen={onOpen}/>
         </Suspense>
+
+
         {/*<OrbitControls makeDefault/>*/}
       
         <PerspectiveCamera makeDefault position={[0, 1, 6]} fov={40}  />
@@ -61,6 +70,8 @@ export default function Experience()
             minPolarAngle={Math.PI*0.35} 
             maxPolarAngle={Math.PI*0.55}  
         />
+
+
 
     </>
 }

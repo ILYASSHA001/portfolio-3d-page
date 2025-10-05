@@ -16,5 +16,6 @@ export default function HatchModelExample() {
         contrast={1.2}
       />
     </mesh>
+    
   )
 }
