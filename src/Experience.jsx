@@ -7,7 +7,6 @@ import { Perf } from 'r3f-perf'
 import Placeholder from './Placeholder.jsx'
 import { Suspense, useEffect, useState } from 'react'
 import { Html} from "@react-three/drei"
-import LoaderPlaceholder from './LoaderPlaceholder.jsx'
 export default function Experience({ onOpen })
 {
 
