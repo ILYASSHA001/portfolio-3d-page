@@ -6,7 +6,7 @@ import MidGround from './MidGround'
 import { Perf } from 'r3f-perf'
 import Placeholder from './Placeholder.jsx'
 import { Suspense, useEffect, useState } from 'react'
-import { Html} from "@react-three/drei"
+import { Html, useEnvironment} from "@react-three/drei"
 function PrecacheEnvs() {
     // Warm both envs once; they’ll be in the loader cache
     useEnvironment({ preset: 'sunset' })
@@ -31,7 +31,7 @@ export default function Experience({ onOpen })
         <PrecacheEnvs />
         <Environment preset={preset} /* background */ />
       </Suspense>
-      
+
         <Suspense fallback={<Placeholder  position-y={[0.5]} scale={ [2, 3, 2] } />} >
             <Html transform distanceFactor={1.8} position={[-4, 2, -3]}>
                 <button
