@@ -7,16 +7,17 @@ import { Perf } from 'r3f-perf'
 import Placeholder from './Placeholder.jsx'
 import { Suspense, useEffect, useState } from 'react'
 import { Html} from "@react-three/drei"
+function PrecacheEnvs() {
+    // Warm both envs once; they’ll be in the loader cache
+    useEnvironment({ preset: 'sunset' })
+    useEnvironment({ preset: 'night' })
+    return null
+  }
+
 export default function Experience({ onOpen })
 {
-
-
-    const [preset, setPreset] = useState("sunset")
-    const togglePreset = () => {
-        setPreset((prev) =>
-          prev === "sunset" ? "night" : "sunset"   // simple toggle between two
-        )
-      }
+    const [preset, setPreset] = useState('sunset')
+    const togglePreset = () => setPreset(p => (p === 'sunset' ? 'night' : 'sunset'))
 
 
 
@@ -26,9 +27,11 @@ export default function Experience({ onOpen })
 
         <AudioPlayer />
         
-        <Environment 
-            preset={preset}
-        />
+        <Suspense fallback={null}>
+        <PrecacheEnvs />
+        <Environment preset={preset} /* background */ />
+      </Suspense>
+      
         <Suspense fallback={<Placeholder  position-y={[0.5]} scale={ [2, 3, 2] } />} >
             <Html transform distanceFactor={1.8} position={[-4, 2, -3]}>
                 <button
