@@ -5,6 +5,7 @@ import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Modal } from 'react-bootstrap'
+import ChatBot from '@ilyassha001/chatbot';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <>
+    <ChatBot />
 
       <Canvas
         tabIndex={0}
