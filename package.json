@@ -13,7 +13,7 @@
     "vite-plugin-restart": "^0.4.2"
   },
   "dependencies": {
-    "@ilyassha001/chatbot": "^1.0.3",
+    "@ilyassha001/chatbot": "^1.0.4",
     "@needle-tools/gltf-progressive": "^3.3.2",
     "@react-three/drei": "^10.0.4",
     "@react-three/fiber": "^9.1.0",
