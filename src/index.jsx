@@ -5,9 +5,6 @@ import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Modal } from 'react-bootstrap'
-import ChatBot from "@ilyassha001/chatbot";
-
-
 
 function App() {
   const [open, setOpen] = useState(false)
@@ -20,8 +17,7 @@ function App() {
 
   return (
     <>
-    <ChatBot />
-
+     
       <Canvas
         tabIndex={0}
         camera={{ fov: 45, near: 0.1, far: 2000, position: [-3, 1.5, 4] }}

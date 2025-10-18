@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root{
   --bg1:#F6FBFF; --bg2:#FAF7FF;
   --text:#1b2430; --muted:#5e6a7a;
@@ -202,3 +204,64 @@ canvas, .r3f {
   min-height: 100%;
 }
 
+
+
+/*================================*/
+/*this is for the chatbot temporarily*/
+
+.flex.flex-col.h-full {
+  position: fixed;
+  z-index: 9999;
+  bottom: 1rem;
+  right: 1rem;
+  width: 50%;
+}
+
+.flex.flex-col.gap-3 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.flex.flex-col.h-full p {
+  color: #333333;
+  margin: 0;
+  padding: 0.5rem 0 0.5rem 0;
+
+}
+
+.max-w-md.rounded-xl.bg-gray-100.text-black.self-start {
+  align-self: flex-start;
+  max-width: 50%;
+  background-color: #ffa3b3;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+.max-w-md.rounded-xl.bg-blue-600.text-white.self-end {
+  align-self: flex-end;
+  max-width: 50%;
+  background-color:whitesmoke;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+
+
+}
+
+.flex.flex-col.gap-4.items-end.border-2.p-4.rounded-3xl {
+  display: flex;
+}
+
+.resize-none {
+  resize: none !important;
+  width: 100%;
+}
+
+#chatbot-root {
+  position: fixed;
+  width: 100%;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 9999;
+}
