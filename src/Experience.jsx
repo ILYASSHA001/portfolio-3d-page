@@ -33,7 +33,7 @@ export default function Experience({ onOpen })
       </Suspense>
 
         <Suspense fallback={<Placeholder  position-y={[0.5]} scale={ [2, 3, 2] } />} >
-            <Html transform distanceFactor={1.8} position={[-4, 2, -3]}>
+            <Html transform distanceFactor={1.8} position={[-3, 2, -3]}>
                 <button
                     onClick={togglePreset}
                     style={{
@@ -48,7 +48,7 @@ export default function Experience({ onOpen })
                         cursor: 'pointer'
                     }}
                 >
-                    <span className='DescriptorText'>Toggle Env ({preset})</span>
+                    <span className='DescriptorText big-text'>Toggle Env ({preset})</span>
                 </button>
             </Html>
             <BackGround />

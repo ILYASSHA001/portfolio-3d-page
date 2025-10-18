@@ -194,9 +194,12 @@ export default function FullRoom({ onOpen }) {
           />
         </primitive>
       </Suspense>
-
-      {isVisible && !isCoarse ? <Html position={[1, 1.5, 1]} ><span className="DescriptorText">Press "E" to exit zoom</span></Html> : null}
-      {isVisible && !isCoarse ? <Html position={[1, 0.8, 1]} ><a href="open_modal" onClick={toggleModal} className="DescriptorText">Click here to view website in full screen</a></Html> : null}
+      {isVisible && !isCoarse ? <Html position={[2, 1.5, -3]} transform distanceFactor={1.8} >
+        <span className="DescriptorText">Press "E" to exit zoom</span></Html> : null
+      }
+      {isVisible && !isCoarse ? <Html position={[2, 0.8, -3]} transform distanceFactor={1.8} >
+        <a href="open_modal" onClick={toggleModal} className="DescriptorText">Click here to view website in full screen</a></Html> : null
+      }
 
     </>
   )

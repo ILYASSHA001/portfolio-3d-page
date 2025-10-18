@@ -55,8 +55,8 @@ export default function AudioPlayer() {
 
                 {/* your Html overlays */}
                 {!isVisible ? (
-                    <Html position={[0.1, 0.4, 0.1]}>
-                        <span className="DescriptorText">Click the Radio!</span>
+                    <Html transform distanceFactor={1.8} position={[0.15, 0.3, 0.1]}>
+                        <span className="DescriptorText small-text">Click the Radio!</span>
                     </Html>
                 ) : (
                     <Html position={[-0.4, 0.5, -0.1]}>
