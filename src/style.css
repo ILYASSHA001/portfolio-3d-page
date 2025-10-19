@@ -78,6 +78,25 @@ canvas, .r3f {
 
 }
 
+@media (max-width: 768px) {
+  .DescriptorText {
+     font-size: 1.5rem;
+  }
+
+  .big-text {
+    font-size: 1.5rem;
+    min-width: 100px;
+  }
+
+  .small-text {
+    padding: 0.5rem;
+    font-size: 0.5rem;
+    border: 2px #ffffff solid;
+    border-radius: 4px;
+
+  }
+}
+
 .DescriptorText:hover {
   color: #111111;
   cursor: help;

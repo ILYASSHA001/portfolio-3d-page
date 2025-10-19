@@ -28,7 +28,9 @@ export default function AudioPlayer() {
         document.body.style.cursor = 'move'
     }
 
-    const AudioToggler = () => {
+    const AudioToggler = (e) => {
+        e.stopPropagation();
+        e.target.releasePointerCapture(e.pointerId); //
         const audio = document.getElementById("audio_tag")
         if (!audio) return;
 
