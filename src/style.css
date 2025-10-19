@@ -229,7 +229,9 @@ canvas, .r3f {
   z-index: 9999;
   bottom: 1rem;
   right: 1rem;
-  width: 50%;
+  width: 40%;
+  height: 100%;
+  align-content: end;
 }
 
 .flex.flex-col.gap-3 {
@@ -279,4 +281,27 @@ canvas, .r3f {
   bottom: 1rem;
   right: 1rem;
   z-index: 9999;
+}
+
+.chatbot-toggle-button {
+  position: fixed;
+  bottom: 1rem;
+  right: 50%
+}
+
+.overflow-y-auto {
+  overflow-y: auto !important;
+  height: calc(100% - 200px);
+
+}
+
+
+/* Works everywhere */
+.overflow-y-auto::-webkit-scrollbar {
+  display: none;           /* Chrome, Safari, Edge */
+}
+
+* {
+  -ms-overflow-style: none; /* IE, old Edge */
+  scrollbar-width: none;    /* Firefox */
 }
