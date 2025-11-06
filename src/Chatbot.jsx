@@ -7,13 +7,14 @@ import { useState } from 'react';
 
 function AppChat() {
   const [isChatVisible, setIsChatVisible] = useState(false)
-
+  
   const chatBotToggler = () => {
     isChatVisible ? setIsChatVisible(false) : setIsChatVisible(true)
+    
   }
   return (
     <>
-      <Button className="chatbot-toggle-button" onClick={chatBotToggler}>toggle Chatbot</Button>
+      <Button className={`chatbot-toggle-button ${isChatVisible ? 'raised' : 'lowered'}`} onClick={chatBotToggler}>toggle Chatbot</Button>
 
       {isChatVisible && <ChatBot className="Chatbot" />}
     </>

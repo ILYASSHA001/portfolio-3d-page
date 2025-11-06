@@ -309,8 +309,8 @@ canvas, .r3f {
   border-color: transparent !important;
   background: linear-gradient(180deg, var(--grad3), var(--grad2));
   position: fixed;
-  bottom: 1rem;
-  right: 50%
+  right: 50%;
+  transition: .3s ease-in-out;
 }
 
 .overflow-y-auto {
@@ -356,6 +356,16 @@ canvas, .r3f {
 #chatbot-root form textarea:focus-visible {
   outline: none;;
 } 
+
+.chatbot-toggle-button.raised {
+  bottom: 6rem;
+   /*transition: .3s ease-in-out;*/
+}
+
+.chatbot-toggle-button.lowered {
+  bottom: 1rem;
+  /*transition: .3s ease-in-out;*/
+}
 
 @media (max-width: 768px) {
   #chatbot-root .flex.flex-col.h-full{
