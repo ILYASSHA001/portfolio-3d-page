@@ -11,6 +11,9 @@
   --chip:#f2f6ff;
   --shadow: 0 10px 30px rgba(24,39,75,.06), 0 2px 8px rgba(24,39,75,.06);
 }
+
+
+  
 html,
 body,
 #root
@@ -303,6 +306,8 @@ canvas, .r3f {
 }
 
 .chatbot-toggle-button {
+  border-color: transparent !important;
+  background: linear-gradient(180deg, var(--grad3), var(--grad2));
   position: fixed;
   bottom: 1rem;
   right: 50%
@@ -323,4 +328,47 @@ canvas, .r3f {
 * {
   -ms-overflow-style: none; /* IE, old Edge */
   scrollbar-width: none;    /* Firefox */
+}
+
+/*================================*/
+
+/*Chatbnot*/
+#chatbot-root form {
+  padding: 0.5rem !important;
+  border-radius: 0.5rem;
+  border-color: transparent;
+  background: #ffffff;
+}
+
+#chatbot-root form button {
+  border-radius: 0.5rem;
+  color: #ffffff;
+  background: linear-gradient(180deg, var(--grad3), var(--grad2));
+}
+
+#chatbot-root form textarea {
+  border-radius: 0.5rem;
+  color: #ffffff;;
+  color: #333333;
+}
+
+
+#chatbot-root form textarea:focus-visible {
+  outline: none;;
+} 
+
+@media (max-width: 768px) {
+  #chatbot-root .flex.flex-col.h-full{
+    width: calc(100% - 2rem);
+    left: 1rem;
+    right: unset;
+    z-index: 9998;
+  }
+
+  .chatbot-toggle-button {
+    bottom: 6rem;
+    left: 1rem;
+    width: fit-content;
+    z-index: 9999;
+  }
 }

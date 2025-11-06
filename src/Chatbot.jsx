@@ -15,7 +15,7 @@ function AppChat() {
     <>
       <Button className="chatbot-toggle-button" onClick={chatBotToggler}>toggle Chatbot</Button>
 
-      {isChatVisible && <ChatBot />}
+      {isChatVisible && <ChatBot className="Chatbot" />}
     </>
   )
 }
